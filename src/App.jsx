@@ -5,7 +5,6 @@ import Calendar from './components/Calendar/Calendar';
 
 function App() {
 
-  console.log(createCalender());
 
   return (
     <>
