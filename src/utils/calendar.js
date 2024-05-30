@@ -28,8 +28,8 @@ export const createCalender = ( month = dayjs().month(), year = dayjs().year() )
     });
   }
 
-  //5 * 7(5週分)のための35
-  const nextMonthDays = 35 - arrayOfDate.length
+  //6 * 7(6週分)のための42
+  const nextMonthDays = 42 - arrayOfDate.length
 
   //テーブル表示のための翌月の取得
   for ( let i = lastDateOfMonth.date() + 1; i <= lastDateOfMonth.date() + nextMonthDays; i++ ) {
