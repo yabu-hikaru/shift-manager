@@ -11,6 +11,9 @@ node_modules
 dist
 dist-ssr
 *.local
+.env
+# firebaseに記載されているwebAPIキーなどを隠すため
+firebase.js
 
 # Editor directories and files
 .vscode/*
