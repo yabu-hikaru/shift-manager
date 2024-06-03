@@ -4,12 +4,12 @@ import { useNavigate } from 'react-router-dom';
 import { auth, db } from '../../db/firebase';
 import { doc, getDoc } from 'firebase/firestore';
 
-const EmployeeLogin = () => {
+const EmployeeLogin = ({setIsEmpAuth }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [ error, setError ] = useState(null);
 
-  //TODO const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -22,7 +22,9 @@ const EmployeeLogin = () => {
       if (userDoc.exists()) {
         const userData = userDoc.data();
         if (userData.role === "employee" ) {
-          // TODO navigate('employeeDashboard');
+          localStorage.setItem("isEmpAuth", true);
+          setIsEmpAuth(true);
+          navigate('/employee/dashboard');
         } else {
           setError("権限がありません");
           auth.signOut();

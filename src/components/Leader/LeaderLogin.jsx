@@ -2,11 +2,13 @@ import { signInWithEmailAndPassword } from 'firebase/auth';
 import React, { useState } from 'react'
 import { auth, db } from '../../db/firebase';
 import { doc, getDoc } from 'firebase/firestore';
+import { useNavigate } from 'react-router-dom';
 
-const LeaderLogin = () => {
+const LeaderLogin = ({ setIsLdrAuth }) => {
   const [ email, setEmail ] = useState('');
   const [ password, setPassword ] = useState('');
   const [ error, setError ] = useState(null);
+  const navigate = useNavigate();
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -19,7 +21,9 @@ const LeaderLogin = () => {
       if (userDoc.exists()) {
         const userData = userDoc.data();
         if (userData.role === "leader" ) {
-          // TODO navigate('leaderDashboard');
+          localStorage.setItem("isLdrAuth", true);
+          setIsLdrAuth(true);
+          navigate('/leader/dashboard');
         } else {
           setError("権限がありません");
           auth.signOut();
@@ -27,7 +31,6 @@ const LeaderLogin = () => {
       } else {
         setError("該当するユーザーが存在しません")
       }
-      //TODO navigate("/dashboard");
     } catch (error) {
       //TODO エラー処理
       console.error("エラーが起きました:", error);
