@@ -1,12 +1,20 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { auth, db } from '../../db/firebase';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { doc, setDoc } from 'firebase/firestore';
+import { useNavigate } from 'react-router-dom';
 
-const CreateEmployee = () => {
+const CreateEmployee = ({ isLdrAuth }) => {
 
   const [ email, setEmail ] = useState('');
   const [ password, setPassword ] = useState('');
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!isLdrAuth) {
+      navigate('/leader/login');
+    }
+  }, [])
 
   const handleCreateEmployee = async (e) => {
     e.preventDefault();
