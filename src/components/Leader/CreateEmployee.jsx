@@ -28,7 +28,8 @@ const CreateEmployee = ({ isLdrAuth }) => {
       });
 
       //TODO 成功処理
-      alert("成功しました");
+      alert("ユーザーが作成されました。");
+      navigate("/leader/dashboard");
     } catch (error) {
       //TODO 失敗処理
       console.error("エラーが起きました:", error)

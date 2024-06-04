@@ -8,9 +8,11 @@ import ModalPortal from '../Modal/ModalPortal';
 const Calendar = () => {
   const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
-  const [month, setMonth ] = useState(dayjs().month())
-  const [year, setYear ] = useState(dayjs().year())
-  const [ modalOpen, setModalOpen ] = useState(false)
+  const [ clickedDate, setClickedDate ] = useState("");
+
+  const [ year, setYear ] = useState(dayjs().year());
+  const [ month, setMonth ] = useState(dayjs().month());
+  const [ modalOpen, setModalOpen ] = useState(false);
 
   const prevMonth = () => {
     setMonth(month - 1);
@@ -18,6 +20,11 @@ const Calendar = () => {
 
   const nextMonth = () => {
     setMonth(month + 1);
+  }
+
+  const handleDateClick = (date) => {
+    setClickedDate(date);
+    setModalOpen(true);
   }
 
 
@@ -42,7 +49,7 @@ const Calendar = () => {
             <div 
               key={index} 
               className={today ? "calendar-today" : "calendar-date"}
-              onClick={ () => setModalOpen(true) }
+              onClick={ () => handleDateClick(date) }
             >
               <h1 className={currentMonth ? "calendar-current-month" : "calendar-other-month"}>
                 {date.date()}
@@ -64,7 +71,11 @@ const Calendar = () => {
       {modalOpen && 
       (
         <ModalPortal>
-          <Modal handleCloseClick={() => setModalOpen(false)} />
+          {/* TODO useContext使う */}
+          <Modal 
+            clickedDate={clickedDate}
+            handleCloseClick={() => setModalOpen(false)} 
+          />
         </ModalPortal>
       )}
     </div>
