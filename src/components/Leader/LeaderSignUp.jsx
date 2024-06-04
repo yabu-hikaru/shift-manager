@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom'
   const LeaderSignUp = () => {
     const [ email, setEmail ] = useState('');
     const [ password, setPassword ] = useState('');
-    //TODO const navigate = useNavigate();
+    const navigate = useNavigate();
 
     const handleSignUp = async (e) => {
       e.preventDefault();
@@ -20,7 +20,7 @@ import { useNavigate } from 'react-router-dom'
           role: "leader"
         });
 
-        //TODO navigate('/dashboard');
+        navigate('/leader/dashboard');
       } catch ( error ) {
         console.error("エラーが起きました:", error);
       }

@@ -24,7 +24,7 @@ function App() {
           <Route path='/leader/create-employee' element={<CreateEmployee isLdrAuth={isLdrAuth} />} />
           <Route path='/employee/login' element={<EmployeeLogin setIsEmpAuth={setIsEmpAuth} />} />
           <Route path='/leader/login' element={<LeaderLogin setIsLdrAuth={setIsLdrAuth} />} />
-          <Route path='/leader/dashboard' element={<LeaderDashboard/>} />
+          <Route path='/leader/dashboard' element={<LeaderDashboard isLdrAuth={isLdrAuth} />} />
           <Route path='/employee/dashboard' element={<EmployeeDashboard/>} />
         </Routes>
       </Router>
