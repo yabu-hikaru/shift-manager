@@ -40,13 +40,15 @@ const EmployeeLogin = ({setIsEmpAuth }) => {
 
   
   return (
-    <form onSubmit={handleLogin}>
+    <div className='form-card'>
+      <form onSubmit={handleLogin} className='form-container' >
       <input 
         type="email" 
         value={email} 
         onChange={(e) => setEmail(e.target.value)}
         placeholder="Email"
         required
+        className='form-input'
       />
       <input 
         type="password" 
@@ -54,10 +56,12 @@ const EmployeeLogin = ({setIsEmpAuth }) => {
         onChange={(e) => setPassword(e.target.value)}
         placeholder="Password"
         required
+        className='form-input'
       />
-      <button type="submit">ログイン</button>
+      <button type="submit" className='form-button' >ログイン</button>
       {error && <p>{error}</p>}
     </form>
+    </div>
   )
 }
 

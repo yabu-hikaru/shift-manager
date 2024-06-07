@@ -3,6 +3,7 @@ import { auth, db } from '../../db/firebase';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { doc, setDoc } from 'firebase/firestore';
 import { useNavigate } from 'react-router-dom';
+import "../Common/Form.css";
 
 const CreateEmployee = ({ isLdrAuth }) => {
 
@@ -38,11 +39,25 @@ const CreateEmployee = ({ isLdrAuth }) => {
 
 
   return (
-    <form onSubmit={handleCreateEmployee}>
-      <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
-      <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
-      <button type="submit">登録</button>
-    </form>
+    <div className='form-card'>
+      <form onSubmit={handleCreateEmployee} className='form-container' >
+        <input 
+          type="email" 
+          value={email} 
+          onChange={(e) => setEmail(e.target.value)} 
+          className='form-input' 
+          placeholder='Email'
+        />
+        <input 
+          type="password" 
+          value={password} 
+          onChange={(e) => setPassword(e.target.value)} 
+          className='form-input' 
+          placeholder='Password'
+        />
+        <button type="submit" className='form-button'>登録</button>
+      </form>
+    </div>
   )
 }
 

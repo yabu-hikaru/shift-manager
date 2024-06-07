@@ -1,6 +1,7 @@
 import { addDoc, collection, getDocs, query, where } from 'firebase/firestore';
 import React, { useEffect, useState } from 'react'
 import { auth, db } from '../../db/firebase';
+import "./SubmitShift.css"
 
 const SubmitShift = ({ clickedDate }) => {
   const [shifts, setShifts ] = useState([]);
@@ -45,24 +46,26 @@ const SubmitShift = ({ clickedDate }) => {
   };
   
   return (
-    <div>
-      <h1>シフト提出</h1>
-      <div>
-        <h2>{clickedDate.format('MM/DD')}のシフト</h2>
+    <div className='shift-form'>
+      <div className='form-title'>
+        <p>シフト提出フォーム</p>
+      </div>
+      <div className='shift-content'>
+        <p><span>{clickedDate.format('MM/DD').replace(/0+(?=[0-9])/g, '')}</span>のシフト</p>
         {shifts.length > 0 ? (
           shifts.map( shift => (
-            <div key={shift.id} onClick={() => handleShiftSelect(shift)}>
+            <div key={shift.id} onClick={() => handleShiftSelect(shift)} className='shift-time'>
               <p>{shift.startTime} - {shift.endTime}</p>
             </div>
           ))
         ) : (
-          <p>この日にシフトはありません</p>
+          <div className='shift-text'>この日にシフトはありません</div>
         )}
       </div>
 
       { selectedShift && (
-        <form onSubmit={handleShiftSubmit}>
-          <p>選択したシフト: {selectedShift.startTime} - {selectedShift.endTime} </p>
+        <form onSubmit={handleShiftSubmit} className='shift-submit-form'>
+          <p>選択したシフト: <span>{selectedShift.startTime} - {selectedShift.endTime}</span> </p>
           <button type='submit'>提出</button>
         </form>
       ) }
