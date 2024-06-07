@@ -12,7 +12,7 @@ const LeaderDashboard = ({ isLdrAuth }) => {
   return (
     <>
       dashbord
-      <Calendar/>
+      <Calendar isLdrAuth={isLdrAuth} />
     </>
   )
 }

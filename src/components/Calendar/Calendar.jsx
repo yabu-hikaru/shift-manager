@@ -5,7 +5,7 @@ import { createCalender } from '../../utils/calendar';
 import Modal from '../Modal/Modal';
 import ModalPortal from '../Modal/ModalPortal';
 
-const Calendar = () => {
+const Calendar = ({ isLdrAuth, isEmpAuth }) => {
   const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
   const [ clickedDate, setClickedDate ] = useState("");
@@ -75,6 +75,8 @@ const Calendar = () => {
           <Modal 
             clickedDate={clickedDate}
             handleCloseClick={() => setModalOpen(false)} 
+            isEmpAuth={isEmpAuth}
+            isLdrAuth={isLdrAuth}
           />
         </ModalPortal>
       )}

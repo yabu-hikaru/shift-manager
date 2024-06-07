@@ -25,7 +25,7 @@ function App() {
           <Route path='/employee/login' element={<EmployeeLogin setIsEmpAuth={setIsEmpAuth} />} />
           <Route path='/leader/login' element={<LeaderLogin setIsLdrAuth={setIsLdrAuth} />} />
           <Route path='/leader/dashboard' element={<LeaderDashboard isLdrAuth={isLdrAuth} />} />
-          <Route path='/employee/dashboard' element={<EmployeeDashboard/>} />
+          <Route path='/employee/dashboard' element={<EmployeeDashboard isEmpAuth={isEmpAuth} />} />
         </Routes>
       </Router>
     </>
