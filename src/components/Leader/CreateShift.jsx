@@ -1,7 +1,7 @@
 import { addDoc, collection } from 'firebase/firestore';
 import React, { useState } from 'react'
 import { db } from '../../db/firebase';
-import dayjs from 'dayjs';
+import "../Common/Form.css";
 
 const CreateShift = ({ clickedDate }) => {
   const [ startTime, setStartTime ] = useState('');
@@ -23,21 +23,23 @@ const CreateShift = ({ clickedDate }) => {
   }
 
   return (
-    <form onSubmit={handleCreateShifts} >
-      <input 
-        type="time"
-        value={startTime}
-        onChange={(e) => setStartTime(e.target.value)}
-        required
-      />
-      <input 
-        type="time" 
-        value={endTime}
-        onChange={(e) => setEndTime(e.target.value)}
-        required
-      />
-      <button type='submit'>シフト枠作成</button>
-    </form>
+      <form onSubmit={handleCreateShifts}>
+        <input 
+          type="time"
+          value={startTime}
+          onChange={(e) => setStartTime(e.target.value)}
+          required
+          className='form-input'
+        />
+        <input 
+          type="time" 
+          value={endTime}
+          onChange={(e) => setEndTime(e.target.value)}
+          required
+          className='form-input'
+        />
+        <button type='submit' className='form-button'>シフト枠作成</button>
+      </form>
   )
 }
 

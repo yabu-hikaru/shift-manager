@@ -17,3 +17,7 @@
   max-width: 500px;
   width: 100%;
 }
+
+.modal-content button {
+  margin-top: 20px;
+}

@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import { auth, db } from '../../db/firebase';
 import { doc, getDoc } from 'firebase/firestore';
 import { useNavigate } from 'react-router-dom';
+import '../Common/Form.css';
 
 const LeaderLogin = ({ setIsLdrAuth }) => {
   const [ email, setEmail ] = useState('');
@@ -38,13 +39,15 @@ const LeaderLogin = ({ setIsLdrAuth }) => {
 
   }
   return (
-    <form onSubmit={handleLogin}>
+  <div className='form-card'>
+    <form onSubmit={handleLogin} className='form-container'>
       <input 
         type="email" 
         value={email} 
         onChange={(e) => setEmail(e.target.value)} 
         placeholder="Email"
         required
+        className='form-input'
       />
       <input 
         type="password" 
@@ -52,10 +55,12 @@ const LeaderLogin = ({ setIsLdrAuth }) => {
         onChange={(e) => setPassword(e.target.value)} 
         placeholder="Password"
         required
+        className='form-input'
       />
-      <button type="submit">ログイン</button>
+      <button type="submit" className='form-button' >ログイン</button>
       { error && <p>{error}</p>}
     </form>
+  </div>
   )
 }
 

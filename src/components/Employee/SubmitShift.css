@@ -1,0 +1,83 @@
+.shift-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.form-title {
+  display: inline-block;
+  font-size: 15px;
+  background: cadetblue;
+  width: 150px;
+  padding: 4px;
+  text-align: center;
+  border-radius: 4px;
+}
+
+.form-title p {
+  margin: 0;
+  color: white;
+}
+
+.shift-content p {
+  font-size: 20px;
+}
+
+.shift-content span {
+  font-size: 24px;
+  color: #658583;
+  margin-right: 4px;
+  margin-left: 4px;
+}
+
+.shift-text {
+  margin-left: 4px;
+}
+
+.shift-time {
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  margin: 8px;
+  cursor: pointer;
+}
+
+.shift-time p {
+  margin-left: 4px;
+  font-size: 18px;
+  margin-top: 3px;
+  color: grey;
+}
+
+.shift-submit-form {
+  border-radius: 4px;
+  background-color: #ccc;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin: 8px;
+}
+
+.shift-submit-form span {
+  font-size: 20px;
+  margin-left: 3px;
+}
+
+.shift-submit-form button {
+  width: 20%;
+  padding: 10px;
+  margin-top: 0;
+  margin-bottom: 8px;
+  border: none;
+  border-radius: 4px;
+  background-color: rgb(43, 114, 43);
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.shift-submit-form button:hover {
+  background-color: rgb(53, 141, 53);
+  transform: translateY(1px);
+}

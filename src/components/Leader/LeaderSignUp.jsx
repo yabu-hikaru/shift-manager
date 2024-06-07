@@ -3,6 +3,7 @@ import { auth, db } from '../../db/firebase';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { doc, setDoc } from 'firebase/firestore';
 import { useNavigate } from 'react-router-dom'
+import "../Common/Form.css"
   
   const LeaderSignUp = () => {
     const [ email, setEmail ] = useState('');
@@ -26,12 +27,25 @@ import { useNavigate } from 'react-router-dom'
       }
     }
     return (
-      <form onSubmit={handleSignUp}>
-        <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
-        <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
-        <button type="submit">登録</button>
+    <div className='form-card'>
+      <form onSubmit={handleSignUp} className='form-container'>
+        <input 
+          type="email" 
+          value={email} 
+          onChange={(e) => setEmail(e.target.value)}
+          placeholder='Email'
+          className='form-input' 
+        />
+        <input 
+          type="password" 
+          value={password} 
+          onChange={(e) => setPassword(e.target.value)} 
+          className='form-input'
+          placeholder='Password'
+        />
+        <button type="submit" className='form-button'>登録</button>
       </form>
-      
+    </div>
     )
   }
   
