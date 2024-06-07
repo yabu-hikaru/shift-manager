@@ -1,10 +1,9 @@
-import { addDoc, collection, endBefore } from 'firebase/firestore';
+import { addDoc, collection } from 'firebase/firestore';
 import React, { useState } from 'react'
 import { db } from '../../db/firebase';
 import dayjs from 'dayjs';
 
 const CreateShift = ({ clickedDate }) => {
-  const [ date, setDate ] = useState('');
   const [ startTime, setStartTime ] = useState('');
   const [ endTime, setEndTime ] = useState('');
 
@@ -12,7 +11,7 @@ const CreateShift = ({ clickedDate }) => {
     e.preventDefault();
     try {
       await addDoc(collection(db, "shifts"), {
-        date: `${clickedDate.year()}-${clickedDate.month()}-${clickedDate.date()}`,
+        date: clickedDate.format("YYYY-MM-DD"),
         startTime: startTime,
         endTime: endTime
       }
