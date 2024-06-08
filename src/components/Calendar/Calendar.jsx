@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import "./Calendar.css";
 import dayjs from "dayjs";
 import { createCalender } from '../../utils/calendar';
+import { getAllShifts } from '../../utils/getAllShifts';
 import Modal from '../Modal/Modal';
 import ModalPortal from '../Modal/ModalPortal';
 
@@ -9,10 +10,18 @@ const Calendar = ({ isLdrAuth, isEmpAuth }) => {
   const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
   const [ clickedDate, setClickedDate ] = useState("");
-
+  const [ shiftDates, setShiftDates ] = useState([]);
   const [ year, setYear ] = useState(dayjs().year());
   const [ month, setMonth ] = useState(dayjs().month());
   const [ modalOpen, setModalOpen ] = useState(false);
+
+  useEffect(() => {
+    const fetchShiftDates = async () => {
+      const dates = await getAllShifts();
+      setShiftDates(dates);
+    }
+    fetchShiftDates();
+  }, [])
 
   const prevMonth = () => {
     setMonth(month - 1);
@@ -26,7 +35,6 @@ const Calendar = ({ isLdrAuth, isEmpAuth }) => {
     setClickedDate(date);
     setModalOpen(true);
   }
-
 
   return (
     <div className='calendar-start'>
@@ -45,17 +53,20 @@ const Calendar = ({ isLdrAuth, isEmpAuth }) => {
         </div>
         {/* 日付表示 */}
         <div className="calendar-dates">
-          {createCalender(month, year).map(({ date, currentMonth, today }, index) => (
-            <div 
+          {createCalender(month, year).map(({ date, currentMonth, today }, index) => {
+            const isShiftDate = shiftDates.includes(date.format('YYYY-MM-DD'));
+            return (
+              <div 
               key={index} 
-              className={today ? "calendar-today" : "calendar-date"}
+              className={`calendar-date ${today ? 'calendar-today' : ''} ${isShiftDate ? 'shift-date' : ''}`}
               onClick={ () => handleDateClick(date) }
-            >
+              >
               <h1 className={currentMonth ? "calendar-current-month" : "calendar-other-month"}>
                 {date.date()}
               </h1>
             </div>
-          ))}
+            )
+          })}
         </div>
         {/* 翌月、前月移動ボタン */}
         <div className='move-btns'>
