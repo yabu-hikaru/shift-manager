@@ -1,4 +1,4 @@
-import { addDoc, collection, getDocs, query, where } from 'firebase/firestore';
+import { addDoc, collection, doc, getDoc, getDocs, query, where } from 'firebase/firestore';
 import React, { useEffect, useState } from 'react'
 import { auth, db } from '../../db/firebase';
 import "./SubmitShift.css"
@@ -6,6 +6,19 @@ import "./SubmitShift.css"
 const SubmitShift = ({ clickedDate }) => {
   const [shifts, setShifts ] = useState([]);
   const [ selectedShift, setSelectedShift ] = useState(null);
+  const [ employeeName, setEmployeeName ] = useState("");
+
+  useEffect(() => {
+    if  (auth.currentUser) {
+      const fetchUserName = async () => {
+        const userDoc = await getDoc(doc(db, 'users', auth.currentUser.uid));
+        if (userDoc.exists()) {
+          setEmployeeName(userDoc.data().name)
+        }
+      };
+      fetchUserName();
+    }
+  }, [])
 
   useEffect(() => {
     if (clickedDate) {
@@ -36,7 +49,8 @@ const SubmitShift = ({ clickedDate }) => {
         userID: user.uid,
         date: selectedShift.date,
         startTime: selectedShift.startTime,
-        endTime: selectedShift.endTime
+        endTime: selectedShift.endTime,
+        employeeName: employeeName
       } );
       // TODO 成功処理
       alert('シフトを提出しました。');

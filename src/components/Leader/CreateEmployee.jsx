@@ -9,6 +9,7 @@ const CreateEmployee = ({ isLdrAuth }) => {
 
   const [ email, setEmail ] = useState('');
   const [ password, setPassword ] = useState('');
+  const [ employeeName, setEmployeeName ] = useState('');
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -25,7 +26,8 @@ const CreateEmployee = ({ isLdrAuth }) => {
 
       await setDoc(doc(db, "users", user.uid ), {
         email: user.email,
-        role: "employee"
+        role: "employee",
+        name: employeeName
       });
 
       //TODO 成功処理
@@ -41,6 +43,14 @@ const CreateEmployee = ({ isLdrAuth }) => {
   return (
     <div className='form-card'>
       <form onSubmit={handleCreateEmployee} className='form-container' >
+        <input 
+          type="text" 
+          value={employeeName}
+          onChange={(e) => setEmployeeName(e.target.value)}
+          className='form-input'
+          placeholder='Name'
+          required
+        />
         <input 
           type="email" 
           value={email} 
