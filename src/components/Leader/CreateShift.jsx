@@ -30,6 +30,7 @@ const CreateShift = ({ clickedDate }) => {
           onChange={(e) => setStartTime(e.target.value)}
           required
           className='form-input'
+          placeholder='開始時間'
         />
         <input 
           type="time" 
@@ -37,6 +38,7 @@ const CreateShift = ({ clickedDate }) => {
           onChange={(e) => setEndTime(e.target.value)}
           required
           className='form-input'
+          placeholder='終了時間'
         />
         <button type='submit' className='form-button'>シフト枠作成</button>
       </form>

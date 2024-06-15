@@ -1,0 +1,27 @@
+nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+  background-color: #435756;
+  gap: 45px;
+  border-radius: 4px;
+}
+
+nav a {
+  text-decoration: none;
+  color: white;
+  margin-bottom: 10px;
+  transition: all 0.3s;
+}
+
+.nav-icon {
+  color: white;
+  margin-top: 10px;
+  margin-right: 10px;
+  font-size: 28px;
+}
+
+nav a:hover {
+  color: rgb(152, 111, 6);
+}

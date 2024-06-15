@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import "./Calendar.css";
-import { FaExclamationCircle, FaCheckCircle, FaExclamation } from 'react-icons/fa';
+import { FaExclamationCircle, FaCheckCircle } from 'react-icons/fa';
 import dayjs from "dayjs";
 import { createCalender } from '../../utils/calendar';
 import { getAllShifts } from '../../utils/getAllShifts';
