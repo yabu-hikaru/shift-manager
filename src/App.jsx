@@ -9,6 +9,8 @@ import CreateEmployee from './components/Leader/CreateEmployee';
 import LeaderDashboard from './components/Leader/LeaderDashboard';
 import EmployeeDashboard from './components/Employee/EmployeeDashboard';
 import LeaderSignUp from './components/Leader/LeaderSignUp';
+import Navbar from './components/Common/Navbar';
+import Home from './components/Common/Home';
 
 function App() {
   //認証のためにleaderにはpropsとしてisLdrAuthを、employeeにはisEmpAuthを渡す。
@@ -18,8 +20,9 @@ function App() {
   return (
     <>
       <Router>
+        <Navbar isEmpAuth={isEmpAuth} isLdrAuth={isLdrAuth} />
         <Routes>
-          <Route path='/' element={<Calendar />}/>
+          <Route path='/' element={<Home />}/>
           <Route path='/signup' element={<LeaderSignUp />} />
           <Route path='/leader/create-employee' element={<CreateEmployee isLdrAuth={isLdrAuth} />} />
           <Route path='/employee/login' element={<EmployeeLogin setIsEmpAuth={setIsEmpAuth} />} />

@@ -1,0 +1,16 @@
+.home-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+h1 span {
+  color:  #7da3a1;
+}
+
+h2 span {
+  border: 2px solid rgb(181, 181, 181);
+  padding: 10px;
+  border-radius: 8px;
+}
