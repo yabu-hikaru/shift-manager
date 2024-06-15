@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import "./Calendar.css";
+import { FaExclamationCircle, FaCheckCircle, FaExclamation } from 'react-icons/fa';
 import dayjs from "dayjs";
 import { createCalender } from '../../utils/calendar';
 import { getAllShifts } from '../../utils/getAllShifts';
+import { getAllSubmittedShifts } from '../../utils/getAllSubmittedShifts';
 import Modal from '../Modal/Modal';
 import ModalPortal from '../Modal/ModalPortal';
 
@@ -11,14 +13,20 @@ const Calendar = ({ isLdrAuth, isEmpAuth }) => {
 
   const [ clickedDate, setClickedDate ] = useState("");
   const [ shiftDates, setShiftDates ] = useState([]);
+  const [ submittedShifts, setSubmittedShifts ] = useState([]);
   const [ year, setYear ] = useState(dayjs().year());
   const [ month, setMonth ] = useState(dayjs().month());
   const [ modalOpen, setModalOpen ] = useState(false);
 
   useEffect(() => {
     const fetchShiftDates = async () => {
+      //シフト枠の全取得
       const dates = await getAllShifts();
+      //提出されたシフト枠の全取得
+      const submissions = await getAllSubmittedShifts();
+
       setShiftDates(dates);
+      setSubmittedShifts(submissions);
     }
     fetchShiftDates();
   }, [])
@@ -55,6 +63,7 @@ const Calendar = ({ isLdrAuth, isEmpAuth }) => {
         <div className="calendar-dates">
           {createCalender(month, year).map(({ date, currentMonth, today }, index) => {
             const isShiftDate = shiftDates.includes(date.format('YYYY-MM-DD'));
+            const hasSubmittedShifts = submittedShifts.some(shift => shift.date === date.format('YYYY-MM-DD'));
             return (
               <div 
               key={index} 
@@ -63,6 +72,11 @@ const Calendar = ({ isLdrAuth, isEmpAuth }) => {
               >
               <h1 className={currentMonth ? "calendar-current-month" : "calendar-other-month"}>
                 {date.date()}
+                {isLdrAuth ? (
+                  !hasSubmittedShifts && <FaExclamationCircle className='icon-exclamation' />
+                ) : (
+                  hasSubmittedShifts && <FaCheckCircle className='icon-check' />
+                )}
               </h1>
             </div>
             )

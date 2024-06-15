@@ -120,3 +120,10 @@
 /* .shift-date h1 {
   color: white;
 } */
+
+.icon-exclamation,
+.icon-check {
+  margin-left: 60px;
+  font-size: 1em;
+  color: white;
+}
